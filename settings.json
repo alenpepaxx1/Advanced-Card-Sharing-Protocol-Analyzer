@@ -1,0 +1,293 @@
+{
+  "application": {
+    "name": "Advanced Card Sharing Protocol Analyzer",
+    "version": "3.0",
+    "author": "Alen Pepa",
+    "copyright": "© 2025 Alen Pepa. All rights reserved.",
+    "contact": {
+      "linkedin": "<https://www.linkedin.com/in/alenpepa/>"
+    }
+  },
+
+  "protocols": {
+    "cccam": {
+      "default_port": 12000,
+      "timeout": 15,
+      "max_retries": 3,
+      "retry_delay": 2,
+      "supported_versions": ["2.0.11", "2.1.3", "2.1.4", "2.2.1", "2.3.0", "2.3.2"],
+      "description": "CCcam Card Sharing Protocol"
+    },
+    "newcamd": {
+      "default_port": 15000,
+      "timeout": 12,
+      "max_retries": 2,
+      "retry_delay": 1,
+      "supported_versions": ["5.25", "6.0", "6.1"],
+      "des_key_required": true,
+      "description": "NewCamd Protocol with DES encryption"
+    },
+    "mgcamd": {
+      "default_port": 15000,
+      "timeout": 12,
+      "max_retries": 2,
+      "retry_delay": 1,
+      "supported_versions": ["1.35", "1.38", "1.40"],
+      "description": "MGcamd Protocol (NewCamd compatible)"
+    },
+    "oscam": {
+      "default_port": 988,
+      "web_ports": [8888, 8080, 16001],
+      "timeout": 15,
+      "max_retries": 3,
+      "retry_delay": 2,
+      "supported_versions": ["1.20", "1.30", "11708", "11709", "11710"],
+      "web_interface_required": true,
+      "description": "OSCam Open Source Conditional Access Module"
+    }
+  },
+
+  "analysis": {
+    "max_concurrent_connections": 10,
+    "enable_deep_analysis": true,
+    "package_detection": true,
+    "version_detection": true,
+    "expiry_estimation": true,
+    "response_time_tracking": true
+  },
+
+  "expiry_patterns": {
+    "test_accounts": {
+      "keywords": ["test", "trial", "demo", "temp", "sample"],
+      "default_days": 3,
+      "description": "Test/trial accounts with short expiry"
+    },
+    "monthly_accounts": {
+      "keywords": ["month", "30d", "m1", "monthly", "30days"],
+      "default_days": 30,
+      "description": "Monthly subscription accounts"
+    },
+    "yearly_accounts": {
+      "keywords": ["year", "365", "y1", "12m", "annual", "yearly"],
+      "default_days": 365,
+      "description": "Yearly subscription accounts"
+    },
+    "premium_accounts": {
+      "keywords": ["vip", "premium", "platinum", "ultimate", "pro"],
+      "default_days": 90,
+      "description": "Premium accounts with extended access"
+    },
+    "default": {
+      "days": 30,
+      "description": "Default expiry for unrecognized patterns"
+    }
+  },
+
+  "providers": {
+    "sky_uk": {
+      "name": "Sky UK",
+      "caid": "0900",
+      "provider_id": "000001",
+      "pattern": "\\\\x09\\\\x00",
+      "region": "UK"
+    },
+    "sky_deutschland": {
+      "name": "Sky Deutschland",
+      "caid": "0900",
+      "provider_id": "000019",
+      "pattern": "\\\\x09\\\\x19",
+      "region": "Germany"
+    },
+    "canal_plus": {
+      "name": "Canal+ France",
+      "caid": "0500",
+      "provider_id": "000050",
+      "pattern": "\\\\x00\\\\x50",
+      "region": "France"
+    },
+    "polsat": {
+      "name": "Polsat",
+      "caid": "1803",
+      "provider_id": "001830",
+      "pattern": "\\\\x18\\\\x30",
+      "region": "Poland"
+    },
+    "nova": {
+      "name": "Nova",
+      "caid": "0600",
+      "provider_id": "000068",
+      "pattern": "\\\\x00\\\\x00\\\\x00\\\\x68",
+      "region": "Czech Republic"
+    },
+    "cyfra_plus": {
+      "name": "Cyfra+",
+      "caid": "0100",
+      "provider_id": "0000D0",
+      "pattern": "\\\\x00\\\\xD0",
+      "region": "Poland"
+    },
+    "premiere": {
+      "name": "Premiere",
+      "caid": "1801",
+      "provider_id": "000019",
+      "pattern": "\\\\x00\\\\x19",
+      "region": "Germany"
+    },
+    "seca": {
+      "name": "Seca",
+      "caid": "0100",
+      "provider_id": "000001",
+      "pattern": "\\\\x01\\\\x00",
+      "region": "Global"
+    },
+    "viaccess": {
+      "name": "Viaccess",
+      "caid": "0500",
+      "provider_id": "000000",
+      "pattern": "\\\\x05\\\\x00",
+      "region": "Global"
+    },
+    "irdeto": {
+      "name": "Irdeto",
+      "caid": "0600",
+      "provider_id": "000000",
+      "pattern": "\\\\x06\\\\x00",
+      "region": "Global"
+    },
+    "nds": {
+      "name": "NDS/Videoguard",
+      "caid": "0900",
+      "provider_id": "000006",
+      "pattern": "\\\\x09\\\\x06",
+      "region": "Global"
+    },
+    "nagravision": {
+      "name": "Nagravision",
+      "caid": "1800",
+      "provider_id": "000180",
+      "pattern": "\\\\x01\\\\x80",
+      "region": "Global"
+    }
+  },
+
+  "gui": {
+    "theme": "dark",
+    "window_size": {
+      "width": 1400,
+      "height": 900
+    },
+    "colors": {
+      "background": "#2b2b2b",
+      "foreground": "#ffffff",
+      "select_background": "#404040",
+      "select_foreground": "#ffffff",
+      "button_background": "#404040",
+      "button_foreground": "#ffffff",
+      "entry_background": "#404040",
+      "entry_foreground": "#ffffff",
+      "text_background": "#1e1e1e",
+      "text_foreground": "#ffffff",
+      "success": "#4CAF50",
+      "error": "#f44336",
+      "warning": "#ff9800",
+      "info": "#2196F3"
+    },
+    "fonts": {
+      "title": ["Arial", 22, "bold"],
+      "heading": ["Arial", 12, "bold"],
+      "normal": ["Arial", 10],
+      "code": ["Consolas", 10],
+      "status": ["Arial", 9]
+    },
+    "auto_save_config": true,
+    "remember_window_position": true,
+    "show_splash_screen": false
+  },
+
+  "export": {
+    "html": {
+      "template_style": "dark",
+      "include_css": true,
+      "include_statistics": true,
+      "include_copyright": true,
+      "auto_open_browser": false
+    },
+    "json": {
+      "pretty_print": true,
+      "include_metadata": true,
+      "include_copyright": true,
+      "compression": false
+    },
+    "txt": {
+      "include_detailed_info": true,
+      "include_statistics": true,
+      "include_copyright": true,
+      "line_separator": "unix"
+    }
+  },
+
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "file": "logs/card_sharing_analyzer.log",
+    "max_size": "10MB",
+    "backup_count": 5,
+    "format": "%(asctime)s - %(levelname)s - %(message)s"
+  },
+
+  "notifications": {
+    "expiry_warnings": {
+      "enabled": true,
+      "warn_days": [30, 7, 3, 1],
+      "show_popup": true,
+      "email_notifications": false
+    },
+    "server_status": {
+      "notify_offline": true,
+      "notify_online": false,
+      "sound_alerts": false
+    }
+  },
+
+  "performance": {
+    "cache_results": true,
+    "cache_duration": 300,
+    "parallel_connections": true,
+    "connection_pool_size": 10,
+    "dns_cache": true,
+    "dns_timeout": 5
+  },
+
+  "security": {
+    "encrypt_passwords": false,
+    "secure_connections": false,
+    "verify_certificates": false,
+    "connection_encryption": "none"
+  },
+
+  "defaults": {
+    "config_file": "config/sample_servers.cfg",
+    "export_directory": "exports/",
+    "report_directory": "exports/reports/",
+    "data_directory": "exports/data/",
+    "temp_directory": "temp/"
+  },
+
+  "advanced": {
+    "debug_mode": false,
+    "verbose_logging": false,
+    "show_raw_data": false,
+    "enable_experimental_features": false,
+    "custom_protocols": [],
+    "plugin_directory": "plugins/",
+    "auto_update_check": true
+  },
+
+  "metadata": {
+    "created": "2025-01-20",
+    "last_modified": "2025-01-20",
+    "config_version": "1.0",
+    "compatible_app_versions": ["3.0", "3.1"],
+    "description": "Configuration file for Advanced Card Sharing Protocol Analyzer"
+  }
+}
